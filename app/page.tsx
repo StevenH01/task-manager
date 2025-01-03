@@ -1,9 +1,14 @@
-import Image from "next/image";
+'use client'
+
+import Link from "next/link";
+import NavBar from "./components/NavBar";
+
 
 export default function Home() {
   return (
     <div>
-      Task Manager
+      <NavBar />
     </div>
   );
 }
+  
