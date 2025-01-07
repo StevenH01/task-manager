@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import { RxHamburgerMenu } from "react-icons/rx";
+import LoginModal from './login/CustomModal';
 
-const NavBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const NavBar: React.FC = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
     <div className='flex justify-between m-6 items-end'>
-      <h2 className='bg-blue-400 text-white rounded-2xl p-4 text-2xl'>
+      <h1 className='bg-teal-400 text-white rounded-2xl p-4 text-2xl'>
         Task App
-      </h2> 
-      {/* Desktop view */}
+      </h1> 
       <nav className='hidden md:flex gap-4'>
           <a href="">About</a> 
           <a href="">Demo</a> 
-          <a href="">Log In</a>
+          <button className='block' onClick={() => setIsModalOpen(true)}>
+            Log In
+          </button>
+          {isModalOpen && <LoginModal setIsModalOpen={setIsModalOpen} />}
       </nav>
       <nav className='md:hidden'>
         <button onClick={() => setIsOpen(!isOpen)}>
@@ -27,11 +31,14 @@ const NavBar = () => {
         >
           <a href="" className='block mb-2'>About</a>
           <a href="" className='block mb-2'>Demo</a>
-          <a href="" className='block'>Log In</a>
+          <button className='block' onClick={() => setIsModalOpen(true)}>
+            Log In
+          </button>
+          {isModalOpen && <LoginModal setIsModalOpen={setIsModalOpen} />}
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default NavBar;
