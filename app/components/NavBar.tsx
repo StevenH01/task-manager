@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { RxHamburgerMenu } from "react-icons/rx";
 import LoginModal from './login/CustomModal';
+import Link from 'next/link';
 
 const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -8,16 +9,20 @@ const NavBar: React.FC = () => {
 
   return (
     <div className='flex justify-between m-6 items-end'>
-      <h1 className='bg-teal-400 text-white rounded-2xl p-4 text-2xl'>
+      <Link href="/" className='bg-teal-400 text-white rounded-2xl p-4 text-2xl'>
         Task App
-      </h1> 
+      </Link> 
       <nav className='hidden md:flex gap-4'>
-          <a href="">About</a> 
-          <a href="">Demo</a> 
-          <button className='block' onClick={() => setIsModalOpen(true)}>
-            Log In
-          </button>
-          {isModalOpen && <LoginModal setIsModalOpen={setIsModalOpen} />}
+        <Link href="/about" className="hover:text-teal-600">
+          About
+        </Link>
+        <Link href="/demo" className="hover:text-teal-600">
+          Demo
+        </Link>
+        <button className='block' onClick={() => setIsModalOpen(true)}>
+          Log In
+        </button>
+        {isModalOpen && <LoginModal setIsModalOpen={setIsModalOpen} />}
       </nav>
       <nav className='md:hidden'>
         <button onClick={() => setIsOpen(!isOpen)}>
@@ -29,9 +34,19 @@ const NavBar: React.FC = () => {
           className='absolute top-16 left-0 w-full p-4 shadow-lg flex flex-col items-center mt-6'
           onClick={() => setIsOpen(false)}
         >
-          <a href="" className='block mb-2'>About</a>
-          <a href="" className='block mb-2'>Demo</a>
-          <button className='block' onClick={() => setIsModalOpen(true)}>
+          <Link href="/about" className="block mb-2 hover:text-teal-600">
+            About
+          </Link>
+          <Link href="/demo" className="block mb-2 hover:text-teal-600">
+            Demo
+          </Link>
+          <button
+            className='block'
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsModalOpen(true);
+            }}
+          >
             Log In
           </button>
           {isModalOpen && <LoginModal setIsModalOpen={setIsModalOpen} />}

@@ -1,5 +1,6 @@
 import React from "react";
 import { RiCloseLine } from "react-icons/ri";
+import OAuthButton from "./OAuthButton";
 
 interface LoginModalProps {
   setIsModalOpen: (isOpen: boolean) => void;
@@ -28,14 +29,16 @@ const LoginModal: React.FC<LoginModalProps> = ({ setIsModalOpen }) => {
             <RiCloseLine className="text-2xl" />
           </button>
           {/* Modal Content */}
-          <div className="text-sm text-gray-800 text-center space-y-4">
+          <div className="text-sm text-gray-800 text-left space-y-4">
+
+            {/* Email and Password Fields */}
             <div>
               <h3>Email</h3>
-              <input type="email" className="border border-black w-full p-2 rounded" />
+              <input type="email" className="border border-black w-full p-2 rounded mt-1" />
             </div>
             <div>
               <h3>Password</h3>
-              <input type="password" className="border border-black w-full p-2 rounded" />
+              <input type="password" className="border border-black w-full p-2 rounded mt-1" />
             </div>
           </div>
           {/* Modal Actions */}
@@ -46,6 +49,18 @@ const LoginModal: React.FC<LoginModalProps> = ({ setIsModalOpen }) => {
             >
               Log in
             </button>
+            {/* Divider */}
+            <div className="flex items-center my-4">
+              <div className="flex-grow border-t border-gray-300"></div>
+              <span className="px-2 text-gray-500 text-sm">OR</span>
+              <div className="flex-grow border-t border-gray-300"></div>
+            </div>
+            {/* OAuth Buttons */}
+            <div className="space-y-2">
+              <OAuthButton provider="google" label="Sign in with Google" />
+              {/* <OAuthButton provider="github" label="Sign in with GitHub" /> */}
+              {/* Add more OAuth providers as needed */}
+            </div>
             <button
               className="px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-sm hover:bg-gray-200 transition"
               onClick={() => setIsModalOpen(false)}

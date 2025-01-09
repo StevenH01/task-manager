@@ -1,5 +1,6 @@
+'use client';
+
 import React from 'react';
-import { useRouter } from 'next/router';
 
 interface OAuthButtonProps {
   provider: 'google' | 'github' | 'facebook' | 'twitter'; // Add other providers as needed
@@ -7,13 +8,10 @@ interface OAuthButtonProps {
 }
 
 const OAuthButton: React.FC<OAuthButtonProps> = ({ provider, label }) => {
-  const router = useRouter();
-
   const handleOAuthSignIn = async () => {
     try {
-      // Redirect to the dynamic API route for the OAuth provider
       const redirectUrl = `/api/auth/${provider}`;
-      router.push(redirectUrl);
+      window.location.href = redirectUrl; // Redirect to the provider's auth URL
     } catch (error) {
       console.error(`Error initiating ${provider} OAuth:`, error);
     }
